@@ -1,0 +1,15 @@
+AVISO:
+
+MI BASE DE DATOS ES: CoyoTe
+- Administrador es la página principal.
+- Modificador es una Intermedia.
+- bd1 Es la modificación de base.
+- Las demás son INTENTOS de inicios de sesión.
+
+ESTE ES LA PRIMERA VERSIÓN. SIRVE PERO TIENE EXCESIVOS INCONVENIENTES.
+
+PUEDEN PONER SUGERENCIAS AQUÍ:
+
+-
+-
+-
