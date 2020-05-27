@@ -1,0 +1,8 @@
+1. Para revisar qué nombre tiene el CONSTRAINT y retirar las llaves -> SHOW CREATE TABLE pedido; 
+2. Retirar primero las FK con el nombre del CONSTRAINT -> ALTER TABLE pedido DROP FOREIGN KEY pedido_ibfk_1;
+3. Retirar la PK -> ALTER TABLE usuario DROP PRIMARY KEY;
+4. Verificar que no se tengan registros que difieran del nuevo tipo de dato
+5. Modificar el tipo de dato en ambas tablas -> ALTER TABLE usuario MODIFY id_usuario varchar(60);
+					     -> ALTER TABLE pedido MODIFY id_usuario varchar(60);
+6. Agregar la PK ->  ALTER TABLE usuario ADD PRIMARY KEY (id_usuario);
+7. Agregar la FK ->  ALTER TABLE pedido ADD FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario);
