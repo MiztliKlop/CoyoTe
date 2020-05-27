@@ -1,0 +1,19 @@
+AVISO:
+
+NO ESTÁ CONECTADO A NINGUNA BASE.
+
+- Prueba es un pseudo pedido.
+- Ingreso es un pseudo registro.
+- Supervisor Es la página inicial.
+- Cod es la página de botones donde se muestra la caducidad o entrega.
+- Usé iframe para insertar páginas.
+- Cod es un botón donde indica si está listo el pedido.
+- Hay páginas extra que podrían reducirse.
+
+ESTE ES LA CERO VERSIÓN. SIRVE PERO TIENE A DERRAMAR INCONVENIENTES.
+
+PUEDEN PONER MUCHAS SUGERENCIAS AQUÍ:
+
+-
+-
+-
