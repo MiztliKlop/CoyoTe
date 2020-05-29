@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Registro Trabajadores</title>
+  </head>
+  <body>
+    <form align="center" action="base.php" method="post">
+      <fieldset>
+        <legend align="center"><strong>Trabajador</strong></legend><br>
+        Ingresa tu Nombre:               <input type="text" name="nombre"><br><br>
+        Ingresa tu Número de Trabajador  <input type="number" name="id_trabajador"><br><br>
+        Ingresa tu contraseña:           <input type="password" name="contraseña" placeholder="Mínimo 10 caracteres." pattern="((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[@&%#!¡?¿.,]))\S{10,30}"><br><br>
+        <input type="submit" value="Enviar"><br>
+        <p><strong>¿Te equivocaste de categoría?</strong></p>
+        <a href="inicio.html">Regresar</a>
+
+      </fieldset>
+    </form>
+
+  </body>
+</html>

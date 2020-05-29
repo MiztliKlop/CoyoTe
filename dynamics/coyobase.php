@@ -54,83 +54,43 @@
     $contBase=base64_encode($contCodif);
     $nomBase=base64_encode($nomCodif);
     $usuBase=base64_encode($usuCodif);
-    //contBase, nomBase, usuBase, lug;
+
+    $a=[];
+    $i=0;
+
     $id_usuario=  "SELECT id_usuario FROM usuario";
-    //$nombre=  "SELECT Nombre FROM usuario";
     $resp_usu= mysqli_query($conexion, $id_usuario);
-    //$resp_nom= mysqli_query($conexion, $nombre);
-    $rev_usu= mysqli_fetch_array($resp_usu,MYSQLI_NUM);
-    if($rev_usu==''){
+
+    while($rev_usu= mysqli_fetch_array($resp_usu)){
+      $rev_usu[0]=base64_decode($rev_usu[0]);
+      $rev_usu[0]=decodif($rev_usu[0]);
+      $a[$i]=$rev_usu[0];
+      echo $a[$i].'<br>';
+      $i++;
+    }
+    if($a[0]==''){
       $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
-        if(mysqli_query($conexion, $registro)){
-          mysqli_close($conexion);
-          header('Location:registroCor.php');
-        }
-    }else{
-      foreach ($rev_usu as $key => $value) {
-        $value=base64_decode($value);
-        $value=decodif($value);
-        echo $value;
-        if($value == $usu){
-          mysqli_close($conexion);
-          header('Location:registroInc.php');
-        }else{
-          $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
-            if(mysqli_query($conexion, $registro)){
-              mysqli_close($conexion);
-              header('Location:registroCor.php');
-            }else{
-              mysqli_close($conexion);
-              header('Location:registroInc.php');
-            }
-        }
+      if(mysqli_query($conexion, $registro)){
+        mysqli_close($conexion);
+        header('Location:registroCor.php');
       }
     }
-    //$rev_nom= mysqli_fetch_array($resp_nom,MYSQLI_NUM);
-    /*var_dump($rev_usu);
-
-    foreach ($rev_usu as $key => $value) {
-
-      $value=base64_decode($value);
-      $value=decodif($value);
-      if($value == $usu){
+    $cont=count($a);
+    echo 'Total:'.$cont.'<br>';
+    for ($k=0; $k <$cont ; $k++) {
+      if($a[$k]==$usu){
         mysqli_close($conexion);
         header('Location:registroInc.php');
-      }
-    }*/
-    /*foreach ($rev_usu as $key => $value) {
-      $value=base64_decode($value);
-      $value=decodif($value);
-      if($value == $usu){
-        mysqli_close($conexion);
-        header('Location:registroInc.php');
-      }else{
-        foreach ($rev_nom as $key => $value) {
-          $value=base64_decode($value);
-          $value=decodif($value);
-          if($value == $nom){
+      }elseif($a[$k]!=$usu){
+        if($k==$cont-1){
+          $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
+          if(mysqli_query($conexion, $registro)){
             mysqli_close($conexion);
-            header('Location:registroInc.php');
-          }else{
-            if($cat=='alumno')
-              $cat='Alumno';
-            elseif($cat=='maestro'){
-              $cat='Maestro/funcionario';
-            }elseif($cat=='trabajador'){
-              $cat='Trabajador';
-            }
-            $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$cat')";
-              if(mysqli_query($conexion, $registro)){
-                mysqli_close($conexion);
-                header('Location:registroCor.php');
-              }else{
-                mysqli_close($conexion);
-                header('Location:registroInc.php');
-              }
+            header('Location:registroCor.php');
           }
         }
       }
-    }*/
+    }
   }else{
     echo mysqli_conect_error();
     echo mysqli_conect_error();
