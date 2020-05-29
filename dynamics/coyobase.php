@@ -73,25 +73,22 @@
       if(mysqli_query($conexion, $registro)){
         mysqli_close($conexion);
         header('Location:registroCor.php');
-      }else{
-        mysqli_close($conexion);
-        header('Location:registroInc.php');
       }
     }
-    foreach ($a as $key => $value) {
-      echo $a[$key].'</br>';
-      if($a[$key]!=$usu){
-        $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
-        if(mysqli_query($conexion, $registro)){
-          mysqli_close($conexion);
-          header('Location:registroCor.php');
-        }else{
-          mysqli_close($conexion);
-          header('Location:registroInc.php');
-        }
-      }else{
+    $cont=count($a);
+    echo 'Total:'.$cont.'<br>';
+    for ($k=0; $k <$cont ; $k++) {
+      if($a[$k]==$usu){
         mysqli_close($conexion);
         header('Location:registroInc.php');
+      }elseif($a[$k]!=$usu){
+        if($k==$cont-1){
+          $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
+          if(mysqli_query($conexion, $registro)){
+            mysqli_close($conexion);
+            header('Location:registroCor.php');
+          }
+        }
       }
     }
   }else{
