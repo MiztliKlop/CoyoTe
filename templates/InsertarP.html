@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Agregar ProP</title>
+  </head>
+  <body>
+    <h1>Agregar Productos Preparados</h1>
+    <form class="Bebidas" action="../dynamics/Preparados.php" method="post">
+      <label for="Bebida">Nombre del producto:</label>
+        <input type="text" name="ProdcutoP" value="" minlength="5" maxlength="50" required></input><br><br>
+      <label for="Foto">Nombre de la foto con formato:</label>
+        <input type="text" name="Foto" value="" minlength="5" maxlength="200" required placeholder="La foto debe estar guardada
+        en statics"></input><br><br>
+      <label for="Precio">Precio: </label>
+        <input type="number" name="Precio" value="" min="5" max="200" required></input><br><br>
+      <label for="Producto">Nuevo Producto: </label><br>
+        Si<input type="radio" name="Producto" value="Si"></input><br>
+        No<input type="radio" name="Producto" value="No"></input><br><br>
+        <input type="submit" name="Enviar" value="Enviar">
+    </form>
+  </body>
+</html>
