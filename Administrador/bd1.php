@@ -7,12 +7,26 @@
   <body>
 
 <?php
-  $id = $_POST['id'];
-  $nombre = $_POST['nombre'];
-  $costo = $_POST['costo'];
-  $tipo = $_POST['tipo'];
-  $contraseña = $_POST['contraseña'];
-  $grupo = $_POST['grupo'];
+
+  $conexion = mysqli_connect("localhost", "root", "root", "CoyoTe");
+  $id = htmlspecialchars($_POST['id']);
+  $scpid = mysqli_real_escape_string($conexion, $id);
+
+  $nombre = htmlspecialchars($_POST['nombre']);
+  $scpnombre = mysqli_real_escape_string($conexion, $nombre);
+
+  $costo = htmlspecialchars($_POST['costo']);
+  $scpcosto = mysqli_real_escape_string($conexion, $costo);
+
+  $tipo = htmlspecialchars($_POST['tipo']);
+  $scptipo = mysqli_real_escape_string($conexion, $tipo);
+
+  $contraseña = htmlspecialchars($_POST['contraseña']);
+  $scpcontraseña = mysqli_real_escape_string($conexion, $contraseña);
+
+  $grupo = htmlspecialchars($_POST['grupo']);
+  $scpgrupo = mysqli_real_escape_string($conexion, $grupo);
+
 
   if ($tipo == 1)
   {
@@ -22,31 +36,48 @@
   {
     $tipo=2;
   }
-  $disponible = $_POST['disponible'];
-  $imagen = $_POST['imagen'];
-  $nuevo = $_POST['nuevo'];
-  $antes = $_POST['antes'];
 
-$conexion = mysqli_connect("localhost", "root", "root", "CoyoTe");
+  $disponible = htmlspecialchars($_POST['disponible']);
+  $scpdisponible = mysqli_real_escape_string($conexion, $disponible);
+
+  $imagen = htmlspecialchars($_POST['imagen']);
+  $scpimagen = mysqli_real_escape_string($conexion, $imagen);
+
+  $nuevo = htmlspecialchars($_POST['nuevo']);
+  $scpnuevo = mysqli_real_escape_string($conexion, $nuevo);
+
+  $antes = htmlspecialchars($_POST['antes']);
+  $scpantes = mysqli_real_escape_string($conexion, $antes);
+
+
 
 
 if (isset($_POST['insertar']))
 {
+
+
+  // $sql = "SELECT nombreProducto FROM Alimento";
+  // $result = mysqli_query($conexion, $sql) or die("Error " . mysqli_error($connection));
+  // $row = mysqli_fetch_array($result);
+  // while ( $nombre == $row['nombreProducto'] )
+  // {
+  //   header('Location: Modificador.php');
+  // }
 // $consulta = "SELECT*FROM Sexo WHERE sexo ='".$nombre."'";
-$insertar = "INSERT INTO Alimento(id_producto, nombreProducto, costo, id_tipo, disponibilidad, imagen) VALUES ('".$id."','".$nombre."','".$costo."', '".$tipo."', '".$disponible."','".$imagen."')";
+$insertar = "INSERT INTO Alimento(id_producto, nombreProducto, costo, id_tipo, disponibilidad, imagen) VALUES  ('".$scpid."','".$scpnombre."','".$scpcosto."', '".$scptipo."', '".$scpdisponible."','".$scpimagen."')";
 // $consulta = "DELETE FROM Sexo WHERE sexo = '".$nombre."'";
 // $cadenaescapada = mysqli_real_escape_string ($conexion, $nombre, $disponible);
 // $consulta= "SELECT*FROM Alimento WHERE Producto ='".$cadenaescapada."'";
 $respuesta = mysqli_query($conexion, $insertar);
 echo "Agregado <br><br>
       <a href='Administrador.php'> Regresar </a>";
+
 }
 
 
 if (isset($_POST['eliminar'])) {
 
-
-$eliminar = "DELETE FROM Alimento WHERE  nombreProducto = '".$nombre."'";
+$eliminar = "DELETE FROM Alimento WHERE  nombreProducto = '".$scpnombre."'";
 
 $respuesta = mysqli_query($conexion, $eliminar);
 echo "Eliminado Correctamente<br><br>
@@ -58,7 +89,7 @@ echo "Eliminado Correctamente<br><br>
 if (isset($_POST['buscar']))
 {
 
-$consulta = "SELECT*FROM Alimento WHERE nombreProducto ='".$nombre."'";
+$consulta = "SELECT*FROM Alimento WHERE nombreProducto ='".$scpnombre."'";
 $respuesta = mysqli_query($conexion, $consulta);
 echo "<table border=1>
         <tr>
@@ -76,17 +107,17 @@ while($row = mysqli_fetch_array($respuesta))
   echo "  <td>".$row[1]."</td>";
   echo "  <td>$".$row[2]."</td>";
   echo "  <td>".$row[3]."</td>";
-  echo "  <td>$".$row[4]."</td>";
+  echo "  <td>".$row[4]."</td>";
   echo "  <td><img src='".$row[5]."' alt='Alimento' height='20%'></td>";
   echo "</tr>";
+  echo "<a href='Administrador.php'> Regresar </a>";
 }
 
 }
 
 
-if (isset($_POST['todo'])) {
-
-
+if (isset($_POST['todo']))
+{
 
 $mostrar = "SELECT*FROM Alimento";
 $respuesta = mysqli_query($conexion, $mostrar);
@@ -104,18 +135,20 @@ while($row = mysqli_fetch_array($respuesta))
   echo "<tr>";
   echo "  <td>".$row[0]."</td>";
   echo "  <td>".$row[1]."</td>";
-  echo "  <td>".$row[2]."</td>";
-  echo "  <td>$".$row[3]."</td>";
-  echo "  <td>$".$row[4]."</td>";
+  echo "  <td>$".$row[2]."</td>";
+  echo "  <td>".$row[3]."</td>";
+  echo "  <td>".$row[4]."</td>";
   echo "  <td><img src='".$row[5]."' alt='Alimento' height='20%'></td>";
   echo "</tr>";
 }
+  echo "<a href='Administrador.php'> Regresar </a>";
+
 }
 
 
 if (isset($_POST['changeN']))
 {
-  $cambiar = "UPDATE Alimento SET nombreProducto = '".$nuevo."' WHERE nombreProducto = '".$antes."'";
+  $cambiar = "UPDATE Alimento SET nombreProducto = '".$scpnuevo."' WHERE nombreProducto = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -125,7 +158,7 @@ if (isset($_POST['changeN']))
 if (isset($_POST['changeD']))
 {
 
-  $cambiar = "UPDATE Alimento SET disponibilidad = '".$disponible."' WHERE nombreProducto = '".$antes."'";
+  $cambiar = "UPDATE Alimento SET disponibilidad = '".$scpdisponible."' WHERE nombreProducto = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -135,7 +168,7 @@ if (isset($_POST['changeD']))
 if (isset($_POST['changeC']))
 {
 
-  $cambiar = "UPDATE Alimento SET costo = '".$costo."' WHERE nombreProducto = '".$antes."'";
+  $cambiar = "UPDATE Alimento SET costo = '".$scpcosto."' WHERE nombreProducto = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -145,7 +178,7 @@ if (isset($_POST['changeC']))
 if (isset($_POST['changeT']))
 {
 
-  $cambiar = "UPDATE Alimento SET id_tipo = '".$tipo."' WHERE nombreProducto = '".$antes."'";
+  $cambiar = "UPDATE Alimento SET id_tipo = '".$scptipo."' WHERE nombreProducto = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -155,7 +188,7 @@ if (isset($_POST['changeT']))
 if (isset($_POST['changeI']))
 {
 
-  $cambiar = "UPDATE Alimento SET imagen = '".$imagen."' WHERE nombreProducto = '".$antes."'";
+  $cambiar = "UPDATE Alimento SET imagen = '".$scpimagen."' WHERE nombreProducto = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -164,36 +197,46 @@ if (isset($_POST['changeI']))
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//
+// $result = mysql_query('blah blah blah this is your query');
+// if ($result) {
+//      if (mysql_num_rows($result) == 0) {
+//         // do one thing
+//      }
+//      else {
+//         // do another thing
+//      }
+// }
 
 if (isset($_POST['añadir']))
 {
+  //
+  // $rest= "SELECT * FROM Usuario  WHERE nombre LIKE '".$nombre."' AND id_usuario LIKE '".$id."'";
+  //
+  // if ($rest==true)
+  // {
 // $consulta = "SELECT*FROM Sexo WHERE sexo ='".$nombre."'";
-$insertar = "INSERT INTO Usuario(id_usuario, Nombre, Grupo, Contraseña, id_statusCliente) VALUES ('".$id."','".$nombre."','".$grupo."', '".$contraseña."', '1')";
+$insertar = "INSERT INTO Usuario(id_usuario, Nombre, Grupo, Contraseña, id_statusCliente) VALUES ('".$scpid."','".$scpnombre."','".$scpgrupo."', '".$scpcontraseña."', '1')";
 // $consulta = "DELETE FROM Sexo WHERE sexo = '".$nombre."'";
 // $cadenaescapada = mysqli_real_escape_string ($conexion, $nombre, $disponible);
 // $consulta= "SELECT*FROM Alimento WHERE Producto ='".$cadenaescapada."'";
 $respuesta = mysqli_query($conexion, $insertar);
 echo "Agregado <br><br>
       <a href='Administrador.php'> Regresar </a>";
+    // }
+    // else
+    // {
+    //   echo "Error <br><br>
+    //         <a href='Administrador.php'> Regresar </a>";
+    // }
+
 }
 
 
 if (isset($_POST['sacar']))
 {
 
-$eliminar = "DELETE FROM Usuario WHERE  Nombre = '".$nombre."' AND id_usuario = '".$id."' ";
+$eliminar = "DELETE FROM Usuario WHERE  Nombre = '".$scpnombre."' AND id_usuario = '".$scpid."' ";
 
 $respuesta = mysqli_query($conexion, $eliminar);
 echo "Eliminado Correctamente<br><br>
@@ -206,7 +249,7 @@ if (isset($_POST['search']))
 {
 
   // $consulta = "SELECT*FROM Usuario WHERE Nombre = '".$nombre."' AND id_usuario = '".$id."' ";
-$consulta = "SELECT*FROM Usuario WHERE Nombre = '".$nombre."' ";
+$consulta = "SELECT*FROM Usuario WHERE Nombre = '".$scpnombre."' ";
 $respuesta = mysqli_query($conexion, $consulta);
 echo "<table border=1>
         <tr>
@@ -226,7 +269,7 @@ while($row = mysqli_fetch_array($respuesta))
   echo "  <td>".$row[4]."</td>";
   echo "</tr>";
 }
-
+  echo "<a href='Administrador.php'> Regresar </a>";
 }
 
 
@@ -254,12 +297,13 @@ while($row = mysqli_fetch_array($respuesta))
   echo "  <td>".$row[4]."</td>";
   echo "</tr>";
 }
+echo "<a href='Administrador.php'> Regresar </a>";
 }
 
 
 if (isset($_POST['cambioN']))
 {
-  $cambiar = "UPDATE Usuario SET Nombre = '".$nuevo."' WHERE Nombre = '".$antes."'";
+  $cambiar = "UPDATE Usuario SET Nombre = '".$scpnuevo."' WHERE Nombre = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -269,7 +313,7 @@ if (isset($_POST['cambioN']))
 if (isset($_POST['cambio#']))
 {
 
-  $cambiar = "UPDATE Usuario SET id_usuario = '".$id."' WHERE Nombre = '".$antes."'";
+  $cambiar = "UPDATE Usuario SET id_usuario = '".$scpid."' WHERE Nombre = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -279,7 +323,7 @@ if (isset($_POST['cambio#']))
 if (isset($_POST['cambioC']))
 {
 
-  $cambiar = "UPDATE Usuario SET Contraseña = '".$contraseña."' WHERE Nombre = '".$antes."'";
+  $cambiar = "UPDATE Usuario SET Contraseña = '".$scpcontraseña."' WHERE Nombre = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -289,7 +333,7 @@ if (isset($_POST['cambioC']))
 if (isset($_POST['cambioG']))
 {
 
-  $cambiarG = "UPDATE Usuario SET Grupo = '".$grupo."' WHERE Nombre = '".$antes."'";
+  $cambiarG = "UPDATE Usuario SET Grupo = '".$scpgrupo."' WHERE Nombre = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiarG);
 
@@ -299,7 +343,7 @@ if (isset($_POST['cambioG']))
 if (isset($_POST['cambioS']))
 {
 
-  $cambiar = "UPDATE Usuario SET id_statusCliente = '".$tipo."' WHERE Nombre = '".$antes."'";
+  $cambiar = "UPDATE Usuario SET id_statusCliente = '".$scptipo."' WHERE Nombre = '".$scpantes."'";
 
   $respuesta = mysqli_query($conexion, $cambiar);
 
@@ -419,6 +463,78 @@ if (isset($_POST['cambioS']))
 //   echo "Cambiado Correctamente<br><br>
 //         <a href='Administrador.php'> Regresar </a>";
 // }
+
+
+if (isset($_POST['poner']))
+{
+// $consulta = "SELECT*FROM Sexo WHERE sexo ='".$nombre."'";
+$insertar = "INSERT INTO Lugar(id_lugar, lugar) VALUES ('".$scpid."','".$scpnombre."')";
+// $consulta = "DELETE FROM Sexo WHERE sexo = '".$nombre."'";
+// $cadenaescapada = mysqli_real_escape_string ($conexion, $nombre, $disponible);
+// $consulta= "SELECT*FROM Alimento WHERE Producto ='".$cadenaescapada."'";
+$respuesta = mysqli_query($conexion, $insertar);
+echo "Agregado <br><br>
+      <a href='Administrador.php'> Regresar </a>";
+}
+
+
+if (isset($_POST['quitar']))
+{
+
+$eliminar = "DELETE FROM Lugar WHERE  lugar = '".$scpnombre."' ";
+
+$respuesta = mysqli_query($conexion, $eliminar);
+echo "Eliminado Correctamente<br><br>
+      <a href='Administrador.php'> Regresar </a>";
+
+}
+
+
+if (isset($_POST['localizar']))
+{
+  // $consulta = "SELECT*FROM Usuario WHERE Nombre = '".$nombre."' AND id_usuario = '".$id."' ";
+$consulta = "SELECT*FROM Lugar WHERE lugar = '".$scpnombre."' ";
+$respuesta = mysqli_query($conexion, $consulta);
+echo "<table border=1>
+        <tr>
+          <td>Sector/ID</td>
+          <td>Lugar</td>
+        </tr>";
+while($row = mysqli_fetch_array($respuesta))
+{
+  echo "<tr>";
+  echo "  <td>".$row[0]."</td>";
+  echo "  <td>".$row[1]."</td>";
+  echo "</tr>";
+}
+ echo "<a href='Administrador.php'> Regresar </a>";
+}
+
+
+if (isset($_POST['mapa'])) {
+
+
+
+$mostrar = "SELECT*FROM Lugar";
+$respuesta = mysqli_query($conexion, $mostrar);
+echo "<table border=1>
+        <tr>
+          <td>Sector/ID</td>
+          <td>Lugar</td>
+        </tr>";
+while($row = mysqli_fetch_array($respuesta))
+{
+  echo "<tr>";
+  echo "  <td>".$row[0]."</td>";
+  echo "  <td>".$row[1]."</td>";
+  echo "</tr>";
+}
+  echo "<img src='http://www.prepa6.unam.mx/ENP6/_P6/plantel/img/P6_-_Mapa.jpg' width='100%'>";
+  echo "<a href='Administrador.php'> Regresar </a>";
+
+}
+
+
 ?>
 </body>
 </html>

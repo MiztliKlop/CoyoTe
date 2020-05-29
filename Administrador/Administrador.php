@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <form  action="Admin.php" method="get" >
+    <form  action="Admin.php" method="post" >
     <input type="submit" name="cerrar" value="Cerrar Sesión">
     </form>
     <a href="Administrador.php">Alterar Usuario</a>
@@ -24,7 +24,7 @@
     <hr>
 <!-- <iframe src="Admin.php" width="" height=""></iframe> -->
 
-<form style="text-align: center" class="" action="Modificador.php" method="get" target="_blank">Alterar Productos <br><br>
+<form style="text-align: center" class="" action="Modificador.php" method="post" >Alterar Productos <br><br>
   <select name="producto">
     <option value="+">AGREGAR +</option>
     <optgroup label="MODIFICAR">
@@ -45,8 +45,9 @@
 <br><br>
 
  <!-- <iframe src="Admin.php" width="" height=""></iframe><br> <br> -->
+¡FALTAN TRABAJADORES Y PROFESORES/FUNCIONARIOS!
 
-<form class=""  style="text-align: center" action="Modificador.php" method="get" target="_blank">Alterar Usuarios <br><br>
+<form class=""  style="text-align: center" action="Modificador.php" method="post" >Alterar Usuarios <br><br>
   <select name="usuario">
     <option value="+">AÑADIR</option>
     <optgroup label="EDITAR">
@@ -62,5 +63,41 @@
     </select>
     <br><br>
   <input type="submit" name="envioU" value="Alterar">
+</form>
+<br>
+
+
+<br>
+<form class=""  style="text-align: center" action="Modificador.php" method="post" >Alterar Lugares <br><br>
+  <select name="lugar">
+    <option value="+">PONER +</option>
+    <option value="-">QUITAR -</option>
+    <option value="todo">MOSTRAR MAPA Y BASE DE LUGARES</option>
+    <option value="buscar">BUSCAR LUGARES</option>
+  </select>
+    <br><br>
+  <input type="submit" name="envioL" value="Alterar">
+</form>
+<br>
+<br>
+
+
+
+<form class=""  style="text-align: center" action="" method="post" >Limitar<br><br>
+
+  <select name="">
+    <option value="+">Número de Supervisores</option>
+    <option value="-">Número de Administradores</option>
+    <option value="todo">Número de Usuarios</option>
+    <option value="buscar">Número de Pedidos Simultáneos</option>
+    <option value="buscar">Tiempos</option>
+    <option value="buscar">Generaciones</option>
+  </select>
+    <br><br>
+  <input type="submit" name="envioL" value="Alterar">
+</form>
+
+
+
   </body>
 </html>

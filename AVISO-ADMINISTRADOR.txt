@@ -1,5 +1,23 @@
 AVISO:
 
+ACTUALIZACIÓN 2.0
+
+- Seguridad Mejorada
+- Nuevas Funciones
+- Arreglos de Errores
+
+FALTA:
+
+- Hashear las contraseñas, codificarlas y decodificarlos.
+- Conectar con demás páginas.
+- Diseño
+- Validar que no se inserte o repita de nuevo un dato.
+- Establecer nuevas funciones.
+- "Limpiar" el código.
+
+
+ESTE ES LA SEGUNDA VERSIÓN.
+
 MI BASE DE DATOS ES: CoyoTe
 - Administrador es la página principal.
 - Modificador es una Intermedia.
