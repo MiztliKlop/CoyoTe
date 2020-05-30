@@ -40,7 +40,7 @@
   $stat=strip_tags($_POST['status']);
   $cat=strip_tags($_POST['categoria']);
 
-  $conexion=mysqli_connect("localhost","root","","DBCoyote");
+  $conexion=mysqli_connect("localhost","root","","prueba");
   if($conexion){
     $usu=mysqli_real_escape_string($conexion,$usu);
     $nom=mysqli_real_escape_string($conexion,$nom);
@@ -66,30 +66,42 @@
       $rev_usu[0]=base64_decode($rev_usu[0]);
       $rev_usu[0]=decodif($rev_usu[0]);
       $a[$i]=$rev_usu[0];
-      //echo $a[$i].'<br>';
+    //  echo $a[$i].'<br>';
       $i++;
     }
-    if($a[0]==''){
+    if($a==[]){
       $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat', '$cat')";
         mysqli_query($conexion, $registro);
-        mysqli_close($conexion);
+        //echo 'Primer registro';
         header('Location:registroCor.php');
+        //mysqli_close($conexion);
     }
     $cont=count($a);
-    //echo 'Total:'.$cont.'<br>';
     for ($k=0; $k <$cont ; $k++) {
       if($a[$k]==$usu){
+        //mysqli_close($conexion);
+        //echo 'Hola';
+        //header('Location:registroInc.php');
         mysqli_close($conexion);
-        header('Location:registroInc.php');
+        //header('Location:registroInc.php');
       }elseif($a[$k]!=$usu){
-        if($k==$cont-1){
-          $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
+        if($k==$cont-1 && $a[$k]!=$usu){
+          echo $k.'<br>';
+          echo $cont-1;
+          echo $a[$k];
+          echo $usu.',';
+          if($k==$cont-1){
+            $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat','$cat')";
             mysqli_query($conexion, $registro);
-            mysqli_close($conexion);
-            header('Location:registroCor.php');
+            //header('Location:registroCor.php');
+          }
+
+        }else{
+          //header('Location:registroInc.php');
         }
       }
     }
+    mysqli_close($conexion);
   }else{
     echo mysqli_conect_error();
     echo mysqli_conect_error();
