@@ -6,14 +6,14 @@
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="../statics/css/estilo.css">
     <link rel="icon" type="image/ico" href="../statics/img/Prepa.ico" />
-    <title>MenúClientes</title>
+    <title>Empaquetado</title>
   </head>
   <body>
     <div class ="contenedor">
       <header class="encabezado">
         <div class="encabezado-superior">
           <div class="logo">
-            <img src="../statics/img/Cafe.jpg" alt="Cafe">
+            <a href="Menu.html"><img src="../statics/img/Cafe.jpg" alt="Cafe"></a>
           </div>
           <nav class="chico"> </nav>
           <nav class="grande">
@@ -35,47 +35,31 @@
           </nav>
         </div>
       </header>
-      <div class="content-all">
-        <div class="content-carrousel">
-          <figure><a href="../statics/img/1.jpg" target="_blank"><img src="../statics/img/1.jpg"></a></figure>
-          <figure><a href="../statics/img/2.jpg" target="_blank"><img src="../statics/img/2.jpg"></a></figure>
-          <figure><a href="../statics/img/3.jpg" target="_blank"><img src="../statics/img/3.jpg"></a></figure>
-          <figure><a href="../statics/img/4.jpg" target="_blank"><img src="../statics/img/4.jpg"></a></figure>
+      <div class="contenido">
+        <!-- Fromato para los productos
+        <div class=objeto_1>
+          <img src="../statics/img/">
+            <div class=texto>
+              <p>
+                <br>
+                <b>Precio: $</b><br>
+                <form action="" method="post">
+                  Cantidad: <input type="number" name="Precio" value="" min="0" max="50" required></input><br>
+                  <i class="fas fa-shopping-cart"></i><input type="submit" name="Enviar" value="AÑADIR AL CARRITO"></input><br>
+                  <i class="fab fa-paypal"></i><input type="submit" name="Enviar" value="PROCEDER A COMPRA"></input><br>
+                </form>
+              </p>
+            </div>
         </div>
+      -->
       </div>
-      <div class="Hola">
-        <img class="gato" src="../statics/img/hola.gif">
-        <h1>Bienvenido Usuario</h1>
-        <img class="gato" src="../statics/img/hola2.gif">
-      </div>
-      <div class="Menu">
-        <h2>MENÚ</h2>
-        <table>
-          <h3 class="Seccion">Secciónes</h3>
-          <tr>
-            <td><figure><a href="../dynamics/Bebidas.php"><img src="../statics/img/Bebidas.jpg"></a></figure></td>
-            <td><figure><a href="../dynamics/Empaquetado.php"><img src="../statics/img/Empaquetado.jpg"></a></figure></td>
-            <td><figure><a href="../dynamics/Preparados.php"><img src="../statics/img/Preparados.jpg"></a></figure></td>
-          </tr>
-          <tr>
-            <td><div class="Info">
-              Bebidas
-            </div></td>
-            <td><div class="Info">
-              Empaquetado
-            </div></td>
-            <td><div class="Info">
-              Preparado
-            </div></td>
-          </tr>
-        </table>
     </div>
     <div class="Final">
       <footer class="footer">
         <div class="principal">
           <div class="opinion">
             <figure>
-              <form class="opinion" action="../dynamics/Comentarios.php" method="post">
+              <form class="opinion" action="" method="post">
                 <label for="Opinion">Alguna opinion que desees dejar</label>
                 <textarea name="Opinion" style="resize:none"  rows="5" cols="50" maxlength="250"></textarea><br>
                 <input type="submit" name="envio" value="Enviar"></input>
@@ -99,4 +83,4 @@
       </footer>
     </div>
   </body>
-  </html>
+</html>
