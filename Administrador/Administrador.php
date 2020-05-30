@@ -45,12 +45,11 @@
 <br><br>
 
  <!-- <iframe src="Admin.php" width="" height=""></iframe><br> <br> -->
-¡FALTAN TRABAJADORES Y PROFESORES/FUNCIONARIOS!
 
-<form class="" style="text-align: center" action="Modificador.php" method="post" >Alterar Usuarios <br><br>
+<form class="" style="text-align: center" action="Modificador.php" method="post" >Alterar Alumnos <br><br>
   <select name="usuario">
     <option value="+">AÑADIR</option>
-    <optgroup label="EDITAR">
+    <optgroup label="ALUMNOS">
       <option value="change#">Número de Cuenta</option>
       <option value="changeN">Nombre</option>
       <option value="changeG">Grupo</option>
@@ -65,6 +64,68 @@
   <input type="submit" name="envioU" value="Alterar">
 </form>
 <br>
+
+
+
+
+
+
+
+
+
+<form class="" style="text-align: center" action="Modificador.php" method="post" >Alterar Funcionarios <br><br>
+  <select name="usuario">
+    <option value="+">AÑADIR</option>
+<optgroup label="FUNCIONARIO/PROFESOR">
+  <option value="change#">RFC/USUARIO</option>
+  <option value="changeN">Nombre</option>
+  <option value="changeG">COLEGIO (GREMIO)</option>
+  <option value="changeC">Contraseña</option>
+  <option value="changeS">Status</option>
+</optgroup>
+<option value="-">SACAR -</option>
+<option value="todo">MOSTRAR TODA LA BASE DE USUARIOS</option>
+<option value="buscar">BUSCAR USUARIOS</option>
+</select>
+<br><br>
+<input type="submit" name="envioF" value="Alterar">
+</form>
+<br>
+
+
+
+
+
+
+<form class="" style="text-align: center" action="Modificador.php" method="post" >Alterar Trabajadores <br><br>
+  <select name="usuario">
+    <option value="+">AÑADIR</option>
+<optgroup label="TRABAJADORES">
+  <option value="change#">NÚMERO DE TRABAJADOR/USUARIO</option>
+  <option value="changeN">NOMBRE</option>
+  <option value="changeC">Contraseña</option>
+  <option value="changeS">Status</option>
+</optgroup>
+<option value="-">SACAR -</option>
+<option value="todo">MOSTRAR TODA LA BASE DE USUARIOS</option>
+<option value="buscar">BUSCAR USUARIOS</option>
+</select>
+<br><br>
+<input type="submit" name="envioT" value="Alterar">
+</form>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <br>
@@ -85,16 +146,17 @@
 
 <form class=""  style="text-align: center" action="" method="post" >Limitar<br><br>
 
-  <select name="">
-    <option value="+">Número de Supervisores</option>
-    <option value="-">Número de Administradores</option>
-    <option value="todo">Número de Usuarios</option>
-    <option value="buscar">Número de Pedidos Simultáneos</option>
-    <option value="buscar">Tiempos</option>
-    <option value="buscar">Generaciones</option>
+  <select name="#">
+    <option value="#S">Número de Supervisores</option>
+    <option value="#A">Número de Administradores</option>
+    <option value="#U">Número de Usuarios</option>
+    <option value="#PS">Número de Pedidos Simultáneos</option>
+    <!-- VALE OVIEDO TRABAJA CON ESTA PARTE APARTE -->
+    <!-- <option value="#T">Tiempos</option>
+    <option value="#G">Generaciones</option> -->
   </select>
     <br><br>
-  <input type="submit" name="envioL" value="Alterar">
+  <input type="submit" name="envioD" value="Alterar">
 </form>
 
 

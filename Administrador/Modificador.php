@@ -1,5 +1,7 @@
 <?php
 
+// regex productos (?<! )^[A-ZÑ]{1}[a-zñ á-ú]+(?<! )$
+
 if ( isset($_POST['envio']) )
 {
   $sets = $_POST['producto'];
@@ -543,6 +545,575 @@ elseif ( isset($_POST['envioU']) )
     <br><br>";
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+elseif ( isset($_POST['envioF']) )
+{
+  $sets = $_POST['usuario'];
+  if ($sets == "+")
+  {
+  echo "<p>Agregar: Base De Datos FUNCIONARIO</p>
+          <form class='' action='bd1.php' method='post'> Agregar Usuario: <br><br>
+          RFC:  <input type='text' name='id' value='' required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title='Debe Seguir el Formato RFC'><br><br>
+            Nombre del Usuario: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+              ";//Colegio (Gremio):
+            $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+            //fetch data from database
+            $sql = "SELECT Grupo FROM Colegio";
+            $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+            ?>
+
+              <label for="producto">Colegio: </label>
+              <input type="text" list="nombreAlimento" name="grupo" autocomplete="off" placeholder=" - Existente - " id="producto" required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title="Adecue el Formato de Su RFC">
+              <datalist id="nombreAlimento">
+                  <?php while($row = mysqli_fetch_array($result))
+                        { ?>
+                          <option value="<?php echo $row['Grupo']; ?>">
+                          <?php echo $row['Grupo']; ?>
+                          </option>
+                  <?php } ?>
+              </datalist>
+              <br><br>
+              <?php mysqli_close($connection); ?>
+            <?php
+          echo "
+            Contraseña: <input type='password' name='contraseña' value='' pattern='^((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[@&%#!¡?¿.,]))\S{10,30}$' title='Ingrese Una Contraseña Segura' required><br><br>
+            <input type='submit' name='Incorporar' value='Añadir Usuario'><br><br>
+          </form>
+        <br>
+        <br>";
+  }
+
+
+  if ($sets == 'changeN')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_rfc FROM Profesor";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">Número de RFC: </label>
+          <input type="text" list="nombreAlimento" pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title='Debe Seguir el Formato RFC' name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required >
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_rfc']; ?>">
+                      <?php echo $row['id_rfc']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        Usuario Con Nuevo Nombre:  <input type='text' name='nuevoU' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        <input type='submit' name='permutaN' value='Modificar'>
+      </form>
+  <br><br>";
+  }
+  if ($sets == 'change#')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_rfc FROM Profesor";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">Número de RFC Anterior: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title='Debe Seguir el Formato RFC'>
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_rfc']; ?>">
+                      <?php echo $row['id_rfc']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        Usuario Con Nuevo RFC:  <input type='text' name='idn' value='' required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title='Debe Seguir el Formato RFC'>
+        <br><br>
+        <input  name='permuta#' type='submit' value='Modificar'>
+
+      </form>
+      <br><br>";
+  }
+  if ($sets == 'changeC')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_rfc FROM Profesor";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">RFC Anterior: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title='Debe Seguir el Formato RFC'>
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_rfc']; ?>">
+                      <?php echo $row['id_rfc']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        Usuario Con Nueva Contraseña:  <input type='password' name='contraseña' pattern='^((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[@&%#!¡?¿.,]))\S{10,30}$' title='Ingrese Una Contraseña Segura'  value=''><br><br>
+        <input type='submit' name='permutaC' value='Modificar'>
+      </form>
+  <br><br>";
+  }
+  if ($sets == 'changeG')
+  {
+    echo "<p>Agregar: Base De Datos FUNCIONARIO</p>
+            <form class='' action='bd1.php' method='post'> Agregar Usuario: <br><br>
+            RFC:  <input type='text' name='id' value='' required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title='Debe Seguir el Formato RFC'><br><br>
+              Nombre del Usuario: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+                ";//Colegio (Gremio):
+              $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+              //fetch data from database
+              $sql = "SELECT Grupo FROM Colegio";
+              $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+              ?>
+
+                <label for="producto">Colegio: </label>
+                <input type="text" list="nombreAlimento" name="grupo" autocomplete="off" placeholder=" - Existente - " id="producto" required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title="Adecue el Formato de Su RFC">
+                <datalist id="nombreAlimento">
+                    <?php while($row = mysqli_fetch_array($result))
+                          { ?>
+                            <option value="<?php echo $row['Grupo']; ?>">
+                            <?php echo $row['Grupo']; ?>
+                            </option>
+                    <?php } ?>
+                </datalist>
+                <br><br>
+                <?php mysqli_close($connection); ?>
+              <?php
+            echo "
+              <input type='submit' name='permutaG' value='Añadir Usuario'><br><br>
+            </form>
+          <br>
+          <br>";
+  }
+  if ($sets == 'changeS')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_rfc FROM Profesor";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">RFC: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title="Adecue el Formato de Su RFC">
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_rfc']; ?>">
+                      <?php echo $row['id_rfc']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        Profesor Con Nuevo Status:  <select name='tipo'>
+                <option value='1'>No Sancionado</option>
+                <option value='2'>Sancionado</option>
+              </select><br><br>
+        <input type='submit' name='permutaS' value='Modificar'>
+      </form>
+  <br><br>";
+  }
+
+
+
+  if ($sets == "-")  {
+  echo "
+      <p>Eliminar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>Eliminar Usuario: <br><br>
+        Nombre del Profesor: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_rfc FROM Profesor";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">RFC: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title="Adecue el Formato de Su RFC">
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_rfc']; ?>">
+                      <?php echo $row['id_rfc']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        <input type='submit' name='excluir' value='Eliminar Usuario'><br><br>
+      </form>
+  <br><br>";
+  }
+  if ($sets == "todo") {
+    echo "<form class='' action='bd1.php' method='post'>Profesores: <br><br>
+      <input type='submit' name='sede' value='Mostrar Todo'><br><br>
+    </form><br><br>";
+  }
+  if ($sets == "buscar")
+  {
+
+    echo "
+        <p>Buscar: Base De Datos</p>
+        <form class='' action='bd1.php' method='post'>Buscar Usuario: <br><br>
+          Nombre del Usuario: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+          ";//connect to mysql database
+          $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+          //fetch data from database
+          $sql = "SELECT id_rfc FROM Profesor";
+          $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+          ?>
+
+            <label for="producto">RFC: </label>
+            <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required pattern='^[A-Z]{4}\d{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[0-9A-Z]{3}$' title="Adecue el Formato de Su RFC">
+            <datalist id="nombreAlimento">
+                <?php while($row = mysqli_fetch_array($result))
+                      { ?>
+                        <option value="<?php echo $row['id_rfc']; ?>">
+                        <?php echo $row['id_rfc']; ?>
+                        </option>
+                <?php } ?>
+            </datalist>
+            <br><br>
+            <?php mysqli_close($connection); ?>
+          <?php
+        echo "
+          <input type='submit' name='lupa' value='Eliminar Usuario'><br><br>
+        </form>
+    <br><br>";
+  }
+}
+
+
+
+
+
+
+
+
+
+
+elseif ( isset($_POST['envioT']) )
+{
+  $sets = $_POST['usuario'];
+  if ($sets == "+")
+  {
+  echo "<p>Agregar: Base De Datos</p>
+          <form class='' action='bd1.php' method='post'> Agregar Usuario: <br><br>
+          Le Sugerimos Checar Si Ya Existe (Mostrado En Existente)<br><br>
+            ";//connect to mysql database
+            $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+            //fetch data from database
+            $sql = "SELECT id_trab FROM Trabajador";
+            $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+            ?>
+
+              <label for="producto">Número de Trabajador: </label>
+              <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required autofocus min='0' max='1500'>
+              <datalist id="nombreAlimento">
+                  <?php while($row = mysqli_fetch_array($result))
+                        { ?>
+                          <option value="<?php echo $row['id_trab']; ?>">
+                          <?php echo $row['id_trab']; ?>
+                          </option>
+                  <?php } ?>
+              </datalist>
+              <br><br>
+              <?php mysqli_close($connection); ?>
+            <?php
+          echo "
+            Nombre del Usuario: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+            Contraseña: <input type='password' name='contraseña' value='' pattern='^((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[@&%#!¡?¿.,]))\S{10,30}$' title='Ingrese Una Contraseña Segura' required><br><br>
+            <input type='submit' name='aditivo' value='Añadir Usuario'><br><br>
+          </form>
+        <br>
+        <br>";
+  }
+
+
+  if ($sets == 'changeN')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        TRABAJADOR a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_trab FROM Trabajador";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">Número de Trabajador: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required autofocus min='0' max='1500'>
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_trab']; ?>">
+                      <?php echo $row['id_trab']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        TRABAJADOR Con Nuevo Nombre:  <input type='text' name='nuevoU' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        <input type='submit' name='sustituirN' value='Modificar'>
+      </form>
+  <br><br>";
+  }
+  if ($sets == 'change#')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        Trabajador a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_trab FROM Trabajador";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">Número de Trabajador Anterior: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required autofocus min='0' max='1500'>
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_trab']; ?>">
+                      <?php echo $row['id_trab']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+         Trabajador Con Nuevo Número de Trabajador:  <input type='text' name='idn' value='' required autofocus min='0' max='1500'>
+        <br><br>
+        <input  name='sustituir#' type='submit' value='Modificar'>
+
+      </form>
+      <br><br>";
+  }
+  if ($sets == 'changeC')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        Trabajador a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_trab FROM Trabajador";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">Número de Trabajador Anterior: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required  autofocus min='0' max='1500'>
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_trab']; ?>">
+                      <?php echo $row['id_trab']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        Trabajador Con Nueva Contraseña:  <input type='password' name='contraseña' pattern='^((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[@&%#!¡?¿.,]))\S{10,30}$' title='Ingrese Una Contraseña Segura'  value=''><br><br>
+        <input type='submit' name='sustituirC' value='Modificar'>
+      </form>
+  <br><br>";
+  }
+  if ($sets == 'changeS')
+  {
+  echo "
+      <p>Modificar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>
+        Trabajador a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_trab FROM Trabajador";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">Número de Cuenta: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required autofocus min='0' max='1500'>
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_trab']; ?>">
+                      <?php echo $row['id_trab']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        Trabajador Con Nuevo Status:  <select name='tipo'>
+                <option value='1'>No Sancionado</option>
+                <option value='2'>Sancionado</option>
+              </select><br><br>
+        <input type='submit' name='sustituirS' value='Modificar'>
+      </form>
+  <br><br>";
+  }
+
+
+
+  if ($sets == "-")  {
+  echo "
+      <p>Eliminar: Base De Datos</p>
+      <form class='' action='bd1.php' method='post'>Eliminar Usuario: <br><br>
+        Nombre del Trabajador: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        ";//connect to mysql database
+        $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+        //fetch data from database
+        $sql = "SELECT id_trab FROM Trabajador";
+        $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+        ?>
+
+          <label for="producto">Número de Cuenta: </label>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required min='0' max='1500'>
+          <datalist id="nombreAlimento">
+              <?php while($row = mysqli_fetch_array($result))
+                    { ?>
+                      <option value="<?php echo $row['id_trab']; ?>">
+                      <?php echo $row['id_trab']; ?>
+                      </option>
+              <?php } ?>
+          </datalist>
+          <br><br>
+          <?php mysqli_close($connection); ?>
+        <?php
+      echo "
+        <input type='submit' name='expulsar' value='Eliminar Usuario'><br><br>
+      </form>
+  <br><br>";
+  }
+  if ($sets == "todo") {
+    echo "<form class='' action='bd1.php' method='post'>Usuario: <br><br>
+      <input type='submit' name='all' value='Mostrar Todo'><br><br>
+    </form><br><br>";
+  }
+  if ($sets == "buscar")
+  {
+
+    echo "
+        <p>Buscar: Base De Datos</p>
+        <form class='' action='bd1.php' method='post'>Buscar Usuario: <br><br>
+          Nombre del Trabajador: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+          ";//connect to mysql database
+          $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
+          //fetch data from database
+          $sql = "SELECT id_trab FROM Trabajador";
+          $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
+          ?>
+
+            <label for="producto">Número de Cuenta: </label>
+            <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required autofocus min='0' max='1500'>
+            <datalist id="nombreAlimento">
+                <?php while($row = mysqli_fetch_array($result))
+                      { ?>
+                        <option value="<?php echo $row['id_trab']; ?>">
+                        <?php echo $row['id_trab']; ?>
+                        </option>
+                <?php } ?>
+            </datalist>
+            <br><br>
+            <?php mysqli_close($connection); ?>
+          <?php
+        echo "
+          <input type='submit' name='inquiry' value='Eliminar Usuario'><br><br>
+        </form>
+    <br><br>";
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

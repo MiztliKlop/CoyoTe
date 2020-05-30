@@ -117,9 +117,9 @@ $decodeU= Descifrar($encodeU);
 $encodeN= Cifrar($scpnuevoU);
 $decodeN= Descifrar($encodeN);
 
-echo "Mensaje Original: ".$scpcontraseña."<br>";
-echo "Mensaje Cifrado: ".$encodeC."<br>";
-echo "Mensaje Descifrado: ".$decodeC."<br>";
+// echo "Mensaje Original: ".$scpcontraseña."<br>";
+// echo "Mensaje Cifrado: ".$encodeC."<br>";
+// echo "Mensaje Descifrado: ".$decodeC."<br>";
 
   // $contCodif=codif($scpcontraseña);
   // // $nomCodif=codif($nom);
@@ -497,6 +497,15 @@ if (isset($_POST['changeI']))
 //         // do another thing
 //      }
 // }
+
+
+
+
+
+
+
+
+
 
 //VALIDADO V
 if (isset($_POST['añadir']))
@@ -933,6 +942,743 @@ if (isset($_POST['cambioS']))
 //   echo "Cambiado Correctamente<br><br>
 //         <a href='Administrador.php'> Regresar </a>";
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+//ESTAS EN FUNCIONARIO/PROFESOR
+
+
+
+
+//VALIDADO V
+if (isset($_POST['Incorporar']))
+{
+
+  $consulta= " SELECT id_rfc FROM Profesor WHERE id_rfc =  '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if ($eliminado != $scpid)
+
+  {
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "INSERT INTO Profesor(id_rfc, Nombre, Grupo, Contraseña, id_statusCliente) VALUES ('".$scpid."','".$encodeU."','".$scpgrupo."', '".$encodeC."', '1')";
+
+  $respuesta = mysqli_query($conexion, $eliminar);
+  echo "Agregado <br><br>
+        <a href='Administrador.php'> Regresar </a>";
+  }
+  else {
+    echo "USUARIO Y NÚMERO DE RFC YA EXISTEN<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  // $rest= "SELECT * FROM Usuario  WHERE nombre LIKE '".$nombre."' AND id_usuario LIKE '".$id."'";
+  //
+  // if ($rest==true)
+  // {
+// $consulta = "SELECT*FROM Sexo WHERE sexo ='".$nombre."'";
+// $insertar = "INSERT INTO Usuario(id_usuario, Nombre, Grupo, Contraseña, id_statusCliente) VALUES ('".$scpid."','".$encodeU."','".$scpgrupo."', '".$encodeC."', '1')";
+// $consulta = "DELETE FROM Sexo WHERE sexo = '".$nombre."'";
+// $cadenaescapada = mysqli_real_escape_string ($conexion, $nombre, $disponible);
+// $consulta= "SELECT*FROM Alimento WHERE Producto ='".$cadenaescapada."'";
+// $respuesta = mysqli_query($conexion, $insertar);
+    // }
+    // else
+    // {
+    //   echo "Error <br><br>
+    //         <a href='Administrador.php'> Regresar </a>";
+    // }
+}
+
+//VALIDADO
+if (isset($_POST['excluir']))
+{
+
+$consulta= " SELECT Nombre FROM Profesor WHERE id_rfc =  '".$scpid."' ";
+$respuesta = mysqli_query($conexion, $consulta);
+while($row = mysqli_fetch_array($respuesta))
+{
+  $eliminado=$row[0];
+}
+mysqli_close($conexion);
+
+if (Descifrar($eliminado) == $scpnombreU)
+
+{
+
+$conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+$eliminar = "DELETE FROM Profesor WHERE Nombre = '".$eliminado."' AND id_rfc = '".$scpid."' ";
+
+$respuesta = mysqli_query($conexion, $eliminar);
+echo Descifrar($eliminado)." Eliminado Correctamente<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+}
+else {
+  echo "PROFESOR Y RFC NO COINCIDEN<br><br>
+    <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+}
+
+}
+//VALIDADO V
+if (isset($_POST['lupa']))
+{
+  $consulta= " SELECT Nombre FROM Profesor WHERE id_rfc =  '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if (Descifrar($eliminado) == $scpnombreU)
+
+  {
+
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "SELECT*FROM Profesor WHERE id_rfc = '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $eliminar);
+
+  echo "<table border=1>
+          <tr>
+            <td>RFC</td>
+            <td>Usuario</td>
+            <td>Colegio</td>
+            <td>Contraseña</td>
+            <td>Status</td>
+          </tr>";
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    echo "<tr>";
+    echo "  <td>".$row[0]."</td>";
+    echo "  <td>".Descifrar($row[1])."</td>";
+    echo "  <td>".$row[2]."</td>";
+    echo "  <td>".$row[3]."</td>";
+    echo "  <td>".$row[4]."</td>";
+    echo "</tr>";
+  }
+    echo "<a href='Administrador.php'> Regresar </a>";
+
+  }
+  else {
+    echo "PROFESOR Y RFC NO COINCIDEN<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+
+}
+
+//VALIDADO V
+if (isset($_POST['sede']))
+
+{
+
+$mostrar = "SELECT*FROM Profesor";
+$respuesta = mysqli_query($conexion, $mostrar);
+echo "<table border=1>
+        <tr>
+          <td>RFC</td>
+          <td>Usuario</td>
+          <td>Colegio (Gremio)</td>
+          <td>Contraseña</td>
+          <td>Status</td>
+        </tr>";
+while($row = mysqli_fetch_array($respuesta))
+{
+  echo "<tr>";
+  echo "  <td>".$row[0]."</td>";
+  echo "  <td>".Descifrar($row[1])."</td>";
+  echo "  <td>".$row[2]."</td>";
+  echo "  <td>".$row[3]."</td>";
+  echo "  <td>".$row[4]."</td>";
+  echo "</tr>";
+}
+echo "<a href='Administrador.php'> Regresar </a>";
+}
+
+//VALIDADO V
+if (isset($_POST['permutaN']))
+{
+  $consulta= " SELECT Nombre FROM Profesor WHERE id_rfc =  '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if (Descifrar($eliminado) == $scpnombreU)
+
+  {
+
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "UPDATE Profesor SET Nombre = '".$encodeN."' WHERE Nombre = '".$eliminado."'";
+
+  $respuesta = mysqli_query($conexion, $eliminar);
+  echo Descifrar($eliminado)." Cambiado Correctamente<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  else {
+    echo "USUARIO ANTERIOR Y RFC NO COINCIDEN<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  // $cambiar = "UPDATE Usuario SET Nombre = '".$encodeN."' WHERE Nombre = '".$encodeU."'";
+  //
+  // $respuesta = mysqli_query($conexion, $cambiar);
+  //
+  // echo "Cambiado Correctamente<br><br>
+  //       <a href='Administrador.php'> Regresar </a>";
+}
+
+//MEDIO VALIDADO
+if (isset($_POST['permuta#']))
+{
+  $consulta= " SELECT id_rfc FROM Profesor WHERE id_rfc =  '".$scpid."'  ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if ($eliminado != $scpidn)
+
+  {
+
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "UPDATE Profesor SET id_rfc = '".$scpidn."' WHERE id_rfc = '".$scpid."'";
+
+  $respuesta = mysqli_query($conexion, $eliminar);
+  echo Descifrar($eliminado)." Cambiada Cuenta Correctamente<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  else {
+    echo " RFC YA EXISTE<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  // $cambiar = "UPDATE Usuario SET id_usuario = '".$scpid."' WHERE Nombre = '".$scpantes."'";
+  // $respuesta = mysqli_query($conexion, $cambiar);
+  // echo "Cambiado Correctamente<br><br>
+  //       <a href='Administrador.php'> Regresar </a>";
+}
+
+//VALIDADO
+if (isset($_POST['permutaC']))
+{
+  $consulta= " SELECT Nombre FROM Profesor WHERE id_rfc =  '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if (Descifrar($eliminado) == $scpnombreU)
+
+  {
+
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "UPDATE Profesor SET Contraseña = '".$encodeC."' WHERE id_rfc = '".$scpid."'";
+
+  $respuesta = mysqli_query($conexion, $eliminar);
+  echo "Contraseña de: ".Descifrar($eliminado)." Cambiada Correctamente<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  else {
+    echo "USUARIO ANTERIOR Y RFC NO COINCIDEN<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  // $cambiar = "UPDATE Usuario SET Contraseña = '".$encodeC."' WHERE Nombre = '".$encodeU."'";
+  // $respuesta = mysqli_query($conexion, $cambiar);
+  // echo "Cambiado Correctamente<br><br>
+  //       <a href='Administrador.php'> Regresar </a>";
+
+}
+
+
+
+//VALIDADO
+if (isset($_POST['permutaG']))
+{
+  $consulta= " SELECT Nombre FROM Profesor WHERE id_rfc =  '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if (Descifrar($eliminado) == $scpnombreU)
+
+  {
+
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "UPDATE Profesor SET Grupo = '".$scpgrupo."' WHERE  id_rfc = '".$scpid."'";
+
+  $respuesta = mysqli_query($conexion, $eliminar);
+  echo "Contraseña de: ".Descifrar($eliminado)." Cambiada Correctamente<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  else {
+    echo "USUARIO ANTERIOR Y RFC NO COINCIDEN<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+
+}
+
+
+
+//VALIDADO
+if (isset($_POST['permutaS']))
+{
+  $consulta= " SELECT Nombre FROM Profesor WHERE id_rfc =  '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if (Descifrar($eliminado) == $scpnombreU)
+
+  {
+
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "UPDATE Profesor SET id_statusCliente = '".$scptipo."' WHERE  id_rfc = '".$scpid."'";
+
+  $respuesta = mysqli_query($conexion, $eliminar);
+  echo "Contraseña de: ".Descifrar($eliminado)." Cambiada Correctamente<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  else {
+    echo "PROFESOR ANTERIOR Y RFC NO COINCIDEN<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ESTAS EN TRABAJADOR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //VALIDADO V
+  if (isset($_POST['aditivo']))
+  {
+
+    $consulta= " SELECT id_trab FROM Trabajador WHERE id_trab =  '".$scpid."' ";
+    $respuesta = mysqli_query($conexion, $consulta);
+    while($row = mysqli_fetch_array($respuesta))
+    {
+      $eliminado=$row[0];
+    }
+    mysqli_close($conexion);
+
+    if ($eliminado != $scpid)
+
+    {
+    $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+    $eliminar = "INSERT INTO Trabajador(id_trab, Nombre, Contraseña, id_statusCliente) VALUES ('".$scpid."','".$encodeU."', '".$encodeC."', '1')";
+
+    $respuesta = mysqli_query($conexion, $eliminar);
+    echo "Agregado <br><br>
+          <a href='Administrador.php'> Regresar </a>";
+    }
+    else {
+      echo "TRABAJADOR Y NÚMERO DE TRABAJADOR YA EXISTEN<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    // $rest= "SELECT * FROM Usuario  WHERE nombre LIKE '".$nombre."' AND id_usuario LIKE '".$id."'";
+    //
+    // if ($rest==true)
+    // {
+  // $consulta = "SELECT*FROM Sexo WHERE sexo ='".$nombre."'";
+  // $insertar = "INSERT INTO Usuario(id_usuario, Nombre, Grupo, Contraseña, id_statusCliente) VALUES ('".$scpid."','".$encodeU."','".$scpgrupo."', '".$encodeC."', '1')";
+  // $consulta = "DELETE FROM Sexo WHERE sexo = '".$nombre."'";
+  // $cadenaescapada = mysqli_real_escape_string ($conexion, $nombre, $disponible);
+  // $consulta= "SELECT*FROM Alimento WHERE Producto ='".$cadenaescapada."'";
+  // $respuesta = mysqli_query($conexion, $insertar);
+      // }
+      // else
+      // {
+      //   echo "Error <br><br>
+      //         <a href='Administrador.php'> Regresar </a>";
+      // }
+  }
+
+  //VALIDADO
+  if (isset($_POST['expulsar']))
+  {
+
+  $consulta= " SELECT Nombre FROM Trabajador WHERE id_trab =  '".$scpid."' ";
+  $respuesta = mysqli_query($conexion, $consulta);
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    $eliminado=$row[0];
+  }
+  mysqli_close($conexion);
+
+  if (Descifrar($eliminado) == $scpnombreU)
+
+  {
+
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+  $eliminar = "DELETE FROM Trabajador WHERE Nombre = '".$eliminado."' AND id_trab = '".$scpid."' ";
+
+  $respuesta = mysqli_query($conexion, $eliminar);
+  echo Descifrar($eliminado)." Eliminado Correctamente<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+  else {
+    echo "TRABAJADOR Y NÚMERO DE TRABAJADOR NO COINCIDEN<br><br>
+      <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+  }
+
+  }
+  //VALIDADO V
+  if (isset($_POST['inquiry']))
+  {
+    $consulta= " SELECT Nombre FROM Trabajador WHERE id_trab =  '".$scpid."' ";
+    $respuesta = mysqli_query($conexion, $consulta);
+    while($row = mysqli_fetch_array($respuesta))
+    {
+      $eliminado=$row[0];
+    }
+    mysqli_close($conexion);
+
+    if (Descifrar($eliminado) == $scpnombreU)
+
+    {
+
+    $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+    $eliminar = "SELECT*FROM Trabajador WHERE id_trab = '".$scpid."' ";
+    $respuesta = mysqli_query($conexion, $eliminar);
+
+    echo "<table border=1>
+            <tr>
+              <td>NÚMERO DE TRABAJADOR</td>
+              <td>Nombre</td>
+              <td>Contraseña</td>
+              <td>Status</td>
+            </tr>";
+    while($row = mysqli_fetch_array($respuesta))
+    {
+      echo "<tr>";
+      echo "  <td>".$row[0]."</td>";
+      echo "  <td>".Descifrar($row[1])."</td>";
+      echo "  <td>".$row[2]."</td>";
+      echo "  <td>".$row[3]."</td>";
+      echo "</tr>";
+    }
+      echo "<a href='Administrador.php'> Regresar </a>";
+
+    }
+    else {
+      echo "TRABAJADOR Y NÚMERO DE TRABAJADOR NO COINCIDEN<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+
+  }
+
+  //VALIDADO V
+  if (isset($_POST['all']))
+
+  {
+
+  $mostrar = "SELECT*FROM Trabajador";
+  $respuesta = mysqli_query($conexion, $mostrar);
+  echo "<table border=1>
+          <tr>
+            <td>NÚMERO DE TRABAJADOR</td>
+            <td>Usuario</td>
+            <td>Contraseña</td>
+            <td>Status</td>
+          </tr>";
+  while($row = mysqli_fetch_array($respuesta))
+  {
+    echo "<tr>";
+    echo "  <td>".$row[0]."</td>";
+    echo "  <td>".Descifrar($row[1])."</td>";
+    echo "  <td>".$row[2]."</td>";
+    echo "  <td>".$row[3]."</td>";
+    echo "</tr>";
+  }
+  echo "<a href='Administrador.php'> Regresar </a>";
+  }
+
+  //VALIDADO V
+  if (isset($_POST['sustituirN']))
+  {
+    $consulta= " SELECT Nombre FROM Trabajador WHERE id_trab =  '".$scpid."' ";
+    $respuesta = mysqli_query($conexion, $consulta);
+    while($row = mysqli_fetch_array($respuesta))
+    {
+      $eliminado=$row[0];
+    }
+    mysqli_close($conexion);
+
+    if (Descifrar($eliminado) == $scpnombreU)
+
+    {
+
+    $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+    $eliminar = "UPDATE Trabajador SET Nombre = '".$encodeN."' WHERE Nombre = '".$eliminado."'";
+
+    $respuesta = mysqli_query($conexion, $eliminar);
+    echo Descifrar($eliminado)." Cambiado Correctamente<br><br>
+          <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    else {
+      echo "TRABAJADOR ANTERIOR Y NÚMERO DE TRABAJADOR NO COINCIDEN<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    // $cambiar = "UPDATE Usuario SET Nombre = '".$encodeN."' WHERE Nombre = '".$encodeU."'";
+    //
+    // $respuesta = mysqli_query($conexion, $cambiar);
+    //
+    // echo "Cambiado Correctamente<br><br>
+    //       <a href='Administrador.php'> Regresar </a>";
+  }
+
+  //MEDIO VALIDADO
+  if (isset($_POST['sustituir#']))
+  {
+    $consulta= " SELECT id_trab FROM Trabajador WHERE id_trab =  '".$scpid."'  ";
+    $respuesta = mysqli_query($conexion, $consulta);
+    while($row = mysqli_fetch_array($respuesta))
+    {
+      $eliminado=$row[0];
+    }
+    mysqli_close($conexion);
+
+    if ($eliminado != $scpidn)
+
+    {
+
+    $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+    $eliminar = "UPDATE Trabajador SET id_trab = '".$scpidn."' WHERE id_trab = '".$scpid."'";
+
+    $respuesta = mysqli_query($conexion, $eliminar);
+    echo Descifrar($eliminado)." Cambiada Cuenta Correctamente<br><br>
+          <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    else {
+      echo " NÚMERO DE TRABAJADOR YA EXISTE<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    // $cambiar = "UPDATE Usuario SET id_usuario = '".$scpid."' WHERE Nombre = '".$scpantes."'";
+    // $respuesta = mysqli_query($conexion, $cambiar);
+    // echo "Cambiado Correctamente<br><br>
+    //       <a href='Administrador.php'> Regresar </a>";
+  }
+
+  //VALIDADO
+  if (isset($_POST['sustituirC']))
+  {
+    $consulta= " SELECT Nombre FROM Trabajador WHERE id_trab =  '".$scpid."' ";
+    $respuesta = mysqli_query($conexion, $consulta);
+    while($row = mysqli_fetch_array($respuesta))
+    {
+      $eliminado=$row[0];
+    }
+    mysqli_close($conexion);
+
+    if (Descifrar($eliminado) == $scpnombreU)
+
+    {
+
+    $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+    $eliminar = "UPDATE Trabajador SET Contraseña = '".$encodeC."' WHERE id_trab = '".$scpid."'";
+
+    $respuesta = mysqli_query($conexion, $eliminar);
+    echo "Contraseña de: ".Descifrar($eliminado)." Cambiada Correctamente<br><br>
+          <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    else {
+      echo "TRABAJADOR ANTERIOR Y NÚMERO DE TRABAJADOR NO COINCIDEN<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    // $cambiar = "UPDATE Usuario SET Contraseña = '".$encodeC."' WHERE Nombre = '".$encodeU."'";
+    // $respuesta = mysqli_query($conexion, $cambiar);
+    // echo "Cambiado Correctamente<br><br>
+    //       <a href='Administrador.php'> Regresar </a>";
+
+  }
+
+
+
+
+  //VALIDADO
+  if (isset($_POST['sustituirS']))
+  {
+    $consulta= " SELECT Nombre FROM Trabajador WHERE id_trab =  '".$scpid."' ";
+    $respuesta = mysqli_query($conexion, $consulta);
+    while($row = mysqli_fetch_array($respuesta))
+    {
+      $eliminado=$row[0];
+    }
+    mysqli_close($conexion);
+
+    if (Descifrar($eliminado) == $scpnombreU)
+
+    {
+
+    $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+
+    $eliminar = "UPDATE Trabajador SET id_statusCliente = '".$scptipo."' WHERE  id_trab = '".$scpid."'";
+
+    $respuesta = mysqli_query($conexion, $eliminar);
+    echo "Contraseña de: ".Descifrar($eliminado)." Cambiada Correctamente<br><br>
+          <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+    else {
+      echo "TRABAJADOR ANTERIOR Y NÚMERO DE TRABAJADOR NO COINCIDEN<br><br>
+        <a href='Administrador.php'> Regresar A Principal</a><br><br>";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //NO VALIDADO
 if (isset($_POST['poner']))
