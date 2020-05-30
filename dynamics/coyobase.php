@@ -38,6 +38,7 @@
   $lug=strip_tags($_POST['area']);
   $cont=strip_tags($_POST['contraseña']);
   $stat=strip_tags($_POST['status']);
+  $cat=strip_tags($_POST['categoria']);
 
   $conexion=mysqli_connect("localhost","root","","DBCoyote");
   if($conexion){
@@ -65,18 +66,17 @@
       $rev_usu[0]=base64_decode($rev_usu[0]);
       $rev_usu[0]=decodif($rev_usu[0]);
       $a[$i]=$rev_usu[0];
-      echo $a[$i].'<br>';
+      //echo $a[$i].'<br>';
       $i++;
     }
     if($a[0]==''){
-      $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
-      if(mysqli_query($conexion, $registro)){
+      $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat', '$cat')";
+        mysqli_query($conexion, $registro);
         mysqli_close($conexion);
         header('Location:registroCor.php');
-      }
     }
     $cont=count($a);
-    echo 'Total:'.$cont.'<br>';
+    //echo 'Total:'.$cont.'<br>';
     for ($k=0; $k <$cont ; $k++) {
       if($a[$k]==$usu){
         mysqli_close($conexion);
@@ -84,10 +84,9 @@
       }elseif($a[$k]!=$usu){
         if($k==$cont-1){
           $registro= "INSERT INTO usuario VALUES ('$usuBase','$nomBase','$lug', '$contBase', '$stat')";
-          if(mysqli_query($conexion, $registro)){
+            mysqli_query($conexion, $registro);
             mysqli_close($conexion);
             header('Location:registroCor.php');
-          }
         }
       }
     }
