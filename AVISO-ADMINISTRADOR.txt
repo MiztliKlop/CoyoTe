@@ -1,5 +1,21 @@
 AVISO:
 
+ACTUALIZACIÓN 5.0
+
+- Nuevas Funciones:
+  -LIMITAR USUARIOS ADMINISTRADORES Y SUPERVISORES
+  - Arreglos de algunos Errores
+
+FALTA:
+
+- Conectar con demás páginas.
+- Diseño
+- Validar que no se inserte o repita de nuevo un dato. EN LUGAR. CONTRASEÑA USUARIO.
+- Establecer nuevas funciones.
+- "Limpiar" el código.
+- ACTUALIZARSE CON NUEVA BASE DE DATOS. (RFC, ETC.) Y ver si funciona con esa Base por la declaración de Nombres de Entidades y Atributos.
+
+ESTE ES LA CUARTA VERSIÓN.
 
 ACTUALIZACIÓN 4.0
 

@@ -144,13 +144,12 @@
 
 
 
-<form class=""  style="text-align: center" action="" method="post" >Limitar<br><br>
+<form class=""  style="text-align: center" action="Modificador.php" method="post" >Limitar<br><br>
 
   <select name="#">
     <option value="#S">Número de Supervisores</option>
     <option value="#A">Número de Administradores</option>
     <option value="#U">Número de Usuarios</option>
-    <option value="#PS">Número de Pedidos Simultáneos</option>
     <!-- VALE OVIEDO TRABAJA CON ESTA PARTE APARTE -->
     <!-- <option value="#T">Tiempos</option>
     <option value="#G">Generaciones</option> -->

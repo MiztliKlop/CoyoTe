@@ -1273,7 +1273,7 @@ if (isset($_POST['permutaS']))
     echo "PROFESOR ANTERIOR Y RFC NO COINCIDEN<br><br>
       <a href='Administrador.php'> Regresar A Principal</a><br><br>";
   }
-
+}
 
 
 
@@ -1639,10 +1639,7 @@ if (isset($_POST['permutaS']))
       echo "TRABAJADOR ANTERIOR Y NÚMERO DE TRABAJADOR NO COINCIDEN<br><br>
         <a href='Administrador.php'> Regresar A Principal</a><br><br>";
     }
-
-
-
-
+}
 
 
 
@@ -1747,10 +1744,82 @@ while($row = mysqli_fetch_array($respuesta))
   echo "<a href='Administrador.php'> Regresar </a>";
 
 }
+//
+// DELETE FROM `Usuario` WHERE `id_usuario` REGEXP '^2';
 
-echo " <a href='Administrador.php'> Regresar A Principal</a><br><br>";
 
 
+
+//NO VALIDADO
+if (isset($_POST['#U']))
+{
+
+  // $consulta = "SELECT*FROM Usuario WHERE Nombre = '".$nombre."' AND id_usuario = '".$id."' ";
+$id_usuario=  "SELECT id_usuario FROM Usuario";
+$resp_usu= mysqli_query($conexion, $id_usuario);
+while($rev_usu= mysqli_fetch_array($resp_usu)){
+  $a[$i]=$rev_usu[0];
+  echo $a[$i].'<br>';
+  $i++;
+}
+$count=count($a);
+echo $count;
+$countF = $count-$scpid;
+mysqli_close($conexion);
+$conexion=mysqli_connect("localhost","root","root","CoyoTe");
+echo $countF;
+
+$consulta = "DELETE FROM Usuario ORDER BY  id_statusCliente  LIMIT ".$countF." ";
+$resp_usu= mysqli_query($conexion, $consulta);
+
+ echo "Excelente Límite<br><br><a href='Administrador.php'> Regresar </a>";
+}
+if (isset($_POST['#S']))
+{
+
+    // $consulta = "SELECT*FROM Usuario WHERE Nombre = '".$nombre."' AND id_usuario = '".$id."' ";
+  $id_usuario=  "SELECT id_supervisor FROM Supervisor";
+  $resp_usu= mysqli_query($conexion, $id_usuario);
+  while($rev_usu= mysqli_fetch_array($resp_usu)){
+    $a[$i]=$rev_usu[0];
+    echo $a[$i].'<br>';
+    $i++;
+  }
+  $count=count($a);
+  echo $count;
+  $countF = $count-$scpid;
+  mysqli_close($conexion);
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+  echo $countF;
+
+  $consulta = "DELETE FROM Supervisor ORDER BY  id_statusCliente  LIMIT ".$countF." ";
+  $resp_usu= mysqli_query($conexion, $consulta);
+
+   echo "Excelente Límite<br><br><a href='Administrador.php'> Regresar </a>";
+}
+if (isset($_POST['#A']))
+{
+
+    // $consulta = "SELECT*FROM Usuario WHERE Nombre = '".$nombre."' AND id_usuario = '".$id."' ";
+  $id_usuario=  "SELECT id_admin FROM Administrador";
+  $resp_usu= mysqli_query($conexion, $id_usuario);
+  while($rev_usu= mysqli_fetch_array($resp_usu)){
+    $a[$i]=$rev_usu[0];
+    echo $a[$i].'<br>';
+    $i++;
+  }
+  $count=count($a);
+  echo $count;
+  $countF = $count-$scpid;
+  mysqli_close($conexion);
+  $conexion=mysqli_connect("localhost","root","root","CoyoTe");
+  echo $countF;
+
+  $consulta = "DELETE FROM Administrador ORDER BY  id_statusCliente  LIMIT ".$countF." ";
+  $resp_usu= mysqli_query($conexion, $consulta);
+
+   echo "Excelente Límite<br><br><a href='Administrador.php'> Regresar </a>";
+}
 ?>
 </body>
 </html>

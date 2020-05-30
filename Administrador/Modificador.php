@@ -1224,6 +1224,70 @@ elseif ( isset($_POST['envioL']) )
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+elseif ( isset($_POST['envioD']) )
+{
+  $sets = $_POST['#'];
+  if ($sets == "#U")
+  {
+
+  echo "<p>Agregar: Base De Datos</p><br><br><p>¡OJO, SI LIMITAS ESTÁS CONSCIENTE DE ELIMINAR A USUARIOS!
+          <form class='' action='bd1.php' method='post'> Limitar: <br><br>
+            Número Máximo de Usuarios: <input type='number' min='0' name='id' value='' required><br><br>
+            <input type='submit' name='#U' value='Añadir Usuario'><br><br>
+          </form>
+        <br>
+        <br>";
+  }
+  if ($sets == "#S")
+  {
+  echo "<p>Agregar: Base De Datos</p>
+          <form class='' action='bd1.php' method='post'> Agregar Lugar: <br><br>
+            Número Máximo de Supervisores: <input type='number' min='0' name='id' value='' required><br><br>
+            <input type='submit' name='#S' value='Añadir Usuario'><br><br>
+          </form>
+        <br>
+        <br>";
+  }
+  if ($sets == "#A")
+  {
+  echo "<p>Agregar: Base De Datos</p>
+          <form class='' action='bd1.php' method='post'> Agregar Lugar: <br><br>
+            Número Máximo de Administradores: <input type='number' min='0' name='id' value='' required><br><br>
+            <input type='submit' name='#A' value='Añadir Usuario'><br><br>
+          </form>
+        <br>
+        <br>";
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 else {
   echo "
     <a href='Administrador.php'> Regresar A Principal</a><br><br>";
