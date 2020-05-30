@@ -24,27 +24,28 @@ echo "<!DOCTYPE html>
         font-weight: 700;
         line-height: 26.4px;
         color:#223415;
-      }
-      h3{
-        color:rgb(224, 188, 31);
-        font-family: 'Hammersmith One';
-      }
-      a:hover{
-        color:rgb(22, 99, 17);
-        font-family: 'Hammersmith One';
-        font-size: 18px;
-      }
-      a{
-        color:rgb(25, 47, 23);
-        font-family: 'Hammersmith One';
-        font-size: 18px;
-      }
+       }
+       h3{
+         color:rgb(224, 188, 31);
+         font-family: 'Hammersmith One';
+       }
+       a:hover{
+         color:rgb(22, 99, 17);
+         font-family: 'Hammersmith One';
+         font-size: 18px;
+       }
+       a{
+         color:rgb(25, 47, 23);
+         font-family: 'Hammersmith One';
+         font-size: 18px;
+       }
     </style>
   </head>
-  <body>
-    <h2>Registro Incorrecto</h2>
-    <h3>Hubo un error en tu registro, <br>asegúrate de introducir tus datos correctamente.</h3>
-    <img src='../statics/img/logo2.png' alt='CoyoTé'><br><br>
-    <a href='coyotein.php'>Regresar</a>
-  </body>"; //Ventana de registro incorrecto del cliente, redirecciona a la página de inicio del cliente
-?>
+  <body>"; //Ventana de registro correcto en el caso del supervisor
+echo  "<h2>Registro correcto</h2>
+      <img src='../statics/img/Prepa.png' alt='CoyoTé'><br><br>
+      <a href='inicioS.php'>Regresar</a>
+    </form>
+  </body>"; //Redirecciona a la página de inicio del supervisor
+
+ ?>

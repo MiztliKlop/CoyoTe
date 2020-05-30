@@ -45,6 +45,6 @@ echo "<!DOCTYPE html>
     <h2>Registro Incorrecto</h2>
     <h3>Hubo un error en tu registro, <br>asegúrate de introducir tus datos correctamente.</h3>
     <img src='../statics/img/logo2.png' alt='CoyoTé'><br><br>
-    <a href='coyotein.php'>Regresar</a>
-  </body>"; //Ventana de registro incorrecto del cliente, redirecciona a la página de inicio del cliente
+    <a href='inicioS.php'>Regresar</a>
+  </body>"; //Ventana de registro incorrecto del supervisor, redirecciona a la página de inicio del supervisor
 ?>
