@@ -1,5 +1,24 @@
 AVISO:
 
+ACTUALIZACIÓN 3.0
+
+- Seguridad Mejorada Al disponible
+  - Hasheo Y Codificación Listo
+- Nuevas Funciones
+- Arreglos de Errores
+- Validaciones que no se inserte o repita de nuevo un dato. EXCEPTO: EN LUGAR. CONTRASEÑA USUARIO.
+
+FALTA:
+
+- Conectar con demás páginas.
+- Diseño
+- Validar que no se inserte o repita de nuevo un dato. EN LUGAR. CONTRASEÑA USUARIO.
+- Establecer nuevas funciones.
+- "Limpiar" el código.
+- ACTUALIZARSE CON NUEVA BASE DE DATOS. (RFC, ETC.)
+
+ESTE ES LA TERCERA VERSIÓN.
+
 ACTUALIZACIÓN 2.0
 
 - Seguridad Mejorada

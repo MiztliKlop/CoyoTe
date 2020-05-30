@@ -297,7 +297,7 @@ elseif ( isset($_POST['envioU']) )
               <?php mysqli_close($connection); ?>
             <?php
           echo "
-            Nombre del Usuario: <input type='text' name='nombre' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+            Nombre del Usuario: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
             Grupo: <input type='text' name='grupo' value='' pattern='^(4(0[1-9]|1[0-7]|5[1-9]|6[0-6])|5(0[1-9]|1[0-8]|5[1-9]|6[0-4])|6(0[1-9]|1[0-9]|5[1-9]|6[0-4]))$' title='Debe Ser Un Grupo Válido'><br><br>
             Contraseña: <input type='password' name='contraseña' value='' pattern='^((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[@&%#!¡?¿.,]))\S{10,30}$' title='Ingrese Una Contraseña Segura' required><br><br>
             <input type='submit' name='añadir' value='Añadir Usuario'><br><br>
@@ -312,7 +312,7 @@ elseif ( isset($_POST['envioU']) )
   echo "
       <p>Modificar: Base De Datos</p>
       <form class='' action='bd1.php' method='post'>
-        Usuario a Modificar:  <input type='text' name='antes' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
         ";//connect to mysql database
         $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
         //fetch data from database
@@ -320,7 +320,7 @@ elseif ( isset($_POST['envioU']) )
         $result = mysqli_query($connection, $sql) or die("Error " . mysqli_error($connection));
         ?>
 
-          <label for="producto">Número de Cuenta Anterior: </label>
+          <label for="producto">Número de Cuenta: </label>
           <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required min='300000000' max='399999999'>
           <datalist id="nombreAlimento">
               <?php while($row = mysqli_fetch_array($result))
@@ -334,7 +334,7 @@ elseif ( isset($_POST['envioU']) )
           <?php mysqli_close($connection); ?>
         <?php
       echo "
-        Usuario Con Nuevo Nombre:  <input type='text' name='nuevo' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        Usuario Con Nuevo Nombre:  <input type='text' name='nuevoU' value='' placeholder='Escriba Correctamente' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
         <input type='submit' name='cambioN' value='Modificar'>
       </form>
   <br><br>";
@@ -344,7 +344,7 @@ elseif ( isset($_POST['envioU']) )
   echo "
       <p>Modificar: Base De Datos</p>
       <form class='' action='bd1.php' method='post'>
-        Usuario a Modificar:  <input type='text' name='antes' value='' placeholder='Escriba Correctamente' required><br><br>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
         ";//connect to mysql database
         $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
         //fetch data from database
@@ -353,7 +353,7 @@ elseif ( isset($_POST['envioU']) )
         ?>
 
           <label for="producto">Número de Cuenta Anterior: </label>
-          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required min='300000000' max='399999999'>
+          <input type="text" list="nombreAlimento" name="id" autocomplete="off" placeholder=" - Existente - " id="producto" required autofocus min='300000000' max='399999999'>
           <datalist id="nombreAlimento">
               <?php while($row = mysqli_fetch_array($result))
                     { ?>
@@ -366,7 +366,7 @@ elseif ( isset($_POST['envioU']) )
           <?php mysqli_close($connection); ?>
         <?php
       echo "
-        Usuario Con Nuevo Número de Cuenta:  <input type='text' name='id' value='' min='300000000' max='399999999'>
+        Usuario Con Nuevo Número de Cuenta:  <input type='text' name='idn' value='' required autofocus min='300000000' max='399999999'>
         <br><br>
         <input  name='cambio#' type='submit' value='Modificar'>
 
@@ -378,7 +378,7 @@ elseif ( isset($_POST['envioU']) )
   echo "
       <p>Modificar: Base De Datos</p>
       <form class='' action='bd1.php' method='post'>
-        Usuario a Modificar:  <input type='text' name='antes' value='' placeholder='Escriba Correctamente' required><br><br>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
         ";//connect to mysql database
         $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
         //fetch data from database
@@ -400,7 +400,7 @@ elseif ( isset($_POST['envioU']) )
           <?php mysqli_close($connection); ?>
         <?php
       echo "
-        Usuario Con Nueva Contraseña:  <input type='password' name='contraseña' value=''><br><br>
+        Usuario Con Nueva Contraseña:  <input type='password' name='contraseña' pattern='^((?=\S*[A-Z])(?=\S*[a-z])(?=\S*\d)(?=\S*[@&%#!¡?¿.,]))\S{10,30}$' title='Ingrese Una Contraseña Segura'  value=''><br><br>
         <input type='submit' name='cambioC' value='Modificar'>
       </form>
   <br><br>";
@@ -410,7 +410,7 @@ elseif ( isset($_POST['envioU']) )
   echo "
       <p>Modificar: Base De Datos</p>
       <form class='' action='bd1.php' method='post'>
-        Usuario a Modificar:  <input type='text' name='antes' value='' placeholder='Escriba Correctamente' required><br><br>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
         ";//connect to mysql database
         $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
         //fetch data from database
@@ -442,7 +442,7 @@ elseif ( isset($_POST['envioU']) )
   echo "
       <p>Modificar: Base De Datos</p>
       <form class='' action='bd1.php' method='post'>
-        Usuario a Modificar:  <input type='text' name='antes' value='' placeholder='Escriba Correctamente' required><br><br>
+        Usuario a Modificar:  <input type='text' name='nombreU' value='' placeholder='Escriba Correctamente' required><br><br>
         ";//connect to mysql database
         $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
         //fetch data from database
@@ -479,7 +479,7 @@ elseif ( isset($_POST['envioU']) )
   echo "
       <p>Eliminar: Base De Datos</p>
       <form class='' action='bd1.php' method='post'>Eliminar Usuario: <br><br>
-        Nombre del Usuario: <input type='text' name='nombre' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+        Nombre del Usuario: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
         ";//connect to mysql database
         $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
         //fetch data from database
@@ -516,7 +516,7 @@ elseif ( isset($_POST['envioU']) )
     echo "
         <p>Buscar: Base De Datos</p>
         <form class='' action='bd1.php' method='post'>Buscar Usuario: <br><br>
-          Nombre del Usuario: <input type='text' name='nombre' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
+          Nombre del Usuario: <input type='text' name='nombreU' value='' required pattern='^([A-ZÁ-ÚÑ]+)[A-ZÁ-ÚÑa-zá-úñ\s]+' title='Debe Empezar Con Mayúscula'><br><br>
           ";//connect to mysql database
           $connection = mysqli_connect("localhost","root","root","CoyoTe") or die("Error " . mysqli_error($connection));
           //fetch data from database
@@ -651,6 +651,11 @@ elseif ( isset($_POST['envioL']) )
     </form>
     <?php
   }
+}
+
+else {
+  echo "
+    <a href='Administrador.php'> Regresar A Principal</a><br><br>";
 }
 
 ?>

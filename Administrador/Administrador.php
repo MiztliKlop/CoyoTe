@@ -47,7 +47,7 @@
  <!-- <iframe src="Admin.php" width="" height=""></iframe><br> <br> -->
 ¡FALTAN TRABAJADORES Y PROFESORES/FUNCIONARIOS!
 
-<form class=""  style="text-align: center" action="Modificador.php" method="post" >Alterar Usuarios <br><br>
+<form class="" style="text-align: center" action="Modificador.php" method="post" >Alterar Usuarios <br><br>
   <select name="usuario">
     <option value="+">AÑADIR</option>
     <optgroup label="EDITAR">
