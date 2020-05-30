@@ -156,6 +156,32 @@ a{
 				font-size: 50px;
 				font-family: Rockwell;
 			}
+			.Campos{
+				text-align: center;
+				width:300px;
+				font-size: 20px;
+				font-family: Rockwell;
+			}
+			.Campos1{
+				text-align: center;
+				width:300px;
+				font-size: 20px;
+				font-family: Rockwell;
+				margin-left: 500px;
+			}
+			.Secciones{
+				width: 310px;
+				border: 5px black solid;
+				margin-left: 500px;
+				border-radius: 20px;
+				background-image: linear-gradient(40deg, green, lime, white);
+			}
+			.Admin{
+				background-color: #EDBF52;
+			}
+			input[type="number"]{
+				width: 50px;
+			}
 			.gato{
 				height: 150px;
 			}
@@ -287,7 +313,7 @@ a{
 		.footer .principal .contacto .redes-sociales a{
 			flex: 1 1 auto;
 			text-align: center;
-			border-radius: 100%;
+			border-radius: 50%;
 			padding: 5px;
 			width: 100%;
 			margin: 5%;

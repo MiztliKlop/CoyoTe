@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+					integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link rel="stylesheet" href="../statics/css/estilo.css">
+		<link rel="icon" type="image/ico" href="../statics/img/Prepa.ico" />
+    <title>Administrador</title>
+  </head>
+  <body class="Admin">
+    <div class="contenedor">
+      <header class="encabezado">
+        <div class="encabezado-superior">
+          <div class="logo">
+            <a href=""><img src="../statics/img/cafe.jpg" alt="Cafe"></a>
+          </div>
+          <nav class="chico"> </nav>
+        </div>
+      </header>
+      <h1>Administrador</h1>
+      <hr>
+        <div class="Secciones">
+          <form class="Campos" action="../dynamics/Modificador.php" method="post" >Alterar Productos <br><br>
+            <select name="producto">
+              <option value="+">AGREGAR +</option>
+              <optgroup label="MODIFICAR">
+                <option value="changeN">Nombre del Producto</option>
+                <option value="changeC">Costo</option>
+                <option value="changeT">Tipo</option>
+                <option value="changeD">Disponibilidad</option>
+                <option value="changeI">Imagen</option>
+              </optgroup>
+              <option value="-">ELIMINAR -</option>
+              <option value="todo">MOSTRAR TODA LA BASE DE ALIMENTOS</option>
+              <option value="buscar">BUSCAR PRODUCTOS</option>
+            </select>
+            <br><br>
+            <input type="submit" name="envio" value="Alterar">
+          </form>
+        </div>
+        <br><br>
+        <div class="Secciones">
+          <form class="Campos" action="../dynamics/Modificador.php" method="post" >Alterar Usuarios <br><br>
+            <select name="usuario">
+              <option value="+">AÑADIR</option>
+              <optgroup label="EDITAR">
+                <option value="change#">Número de Cuenta</option>
+                <option value="changeN">Nombre</option>
+                <option value="changeG">Grupo</option>
+                <option value="changeC">Contraseña</option>
+                <option value="changeS">Status</option>
+                <option value="Sancion">Sanción</option>
+              </optgroup>
+              <option value="-">SACAR -</option>
+              <option value="todo">MOSTRAR TODA LA BASE DE USUARIOS</option>
+              <option value="buscar">BUSCAR USUARIOS</option>
+            </select>
+            <br><br>
+            <input type="submit" name="envioU" value="Alterar">
+          </form>
+        </div>
+        <br><br>
+        <div class="Secciones">
+          <form class="Campos" action="../dynamics/Modificador.php" method="post" >Alterar Funcionarios <br><br>
+            <select name="usuario">
+              <option value="+">AÑADIR</option>
+              <optgroup label="FUNCIONARIO/PROFESOR">
+                <option value="change#">RFC/USUARIO</option>
+                <option value="changeN">Nombre</option>
+                <option value="changeG">COLEGIO (GREMIO)</option>
+                <option value="changeC">Contraseña</option>
+                <option value="changeS">Status</option>
+              </optgroup>
+              <option value="-">SACAR -</option>
+              <option value="todo">MOSTRAR TODA LA BASE DE USUARIOS</option>
+              <option value="buscar">BUSCAR USUARIOS</option>
+            </select>
+            <br><br>
+            <input type="submit" name="envioF" value="Alterar">
+          </form>
+        </div>
+        <br><br>
+        <div class="Secciones">
+          <form class="Campos" action="../dynamics/Modificador.php" method="post" >Alterar Trabajadores <br><br>
+            <select name="usuario">
+              <option value="+">AÑADIR</option>
+              <optgroup label="TRABAJADORES">
+                <option value="change#">NÚMERO DE TRABAJADOR/USUARIO</option>
+                <option value="changeN">NOMBRE</option>
+                <option value="changeC">Contraseña</option>
+                <option value="changeS">Status</option>
+              </optgroup>
+              <option value="-">SACAR -</option>
+              <option value="todo">MOSTRAR TODA LA BASE DE USUARIOS</option>
+              <option value="buscar">BUSCAR USUARIOS</option>
+            </select>
+            <br><br>
+            <input type="submit" name="envioT" value="Alterar">
+          </form>
+        </div>
+        <br><br>
+        <div class="Secciones">
+          <form class="Campos" action="../dynamics/Modificador.php" method="post" >Alterar Lugares <br><br>
+            <select name="lugar">
+              <option value="+">PONER +</option>
+              <option value="-">QUITAR -</option>
+              <option value="todo">MOSTRAR MAPA Y BASE DE LUGARES</option>
+              <option value="buscar">BUSCAR LUGARES</option>
+            </select>
+            <br><br>
+            <input type="submit" name="envioL" value="Alterar">
+          </form>
+        </div>
+        <br><br>
+        <div class="Secciones">
+          <form class="Campos" action="../dynamics/Modificador.php" method="post" >Limitar<br><br>
+            <select name="limite">
+              <option value="+">Número de Supervisores</option>
+              <option value="-">Número de Administradores</option>
+              <option value="todo">Número de Usuarios</option>
+              <option value="buscar">Número de Pedidos Simultáneos</option>
+              <option value="buscar">Tiempos</option>
+              <option value="buscar">Generaciones</option>
+            </select>
+            <br><br>
+            <input type="submit" name="envioL" value="Alterar">
+          </form>
+        </div>
+        <br><br>
+        <form  class="Campos1" action="../dynamics/Admin.php" method="post" >
+          <input type="submit" name="cerrar" value="Cerrar Sesión">
+        </form>
+    </div>
+  </body>
+</html>
