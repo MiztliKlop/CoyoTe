@@ -1,0 +1,76 @@
+:root{
+  background-color:#D8FA9D;
+}
+.titulo .titulo_2{
+  background: rgb(200, 62, 18)
+  display: flex;
+  flex-flow:	row nowrap;
+  height: 100px;
+  align-items: center;
+}
+p{
+  text-align: justify;
+  width: 90%;
+  margin: 0 auto;
+  font-family: "Hammersmith One";
+  color:rgb(99, 82, 31);
+}
+form{
+  width: 47%;
+  margin: 0 auto;
+  text-align: center;
+  font-family:Sans-serif;
+  font-size: 16px;
+}
+table{
+  margin: 0 auto;
+  text-align: center;
+}
+img{
+  width: 70px;
+  height: 70px;
+}
+h1 {
+  font-family: "La Belle Aurore";
+  font-size: 50px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  color:#223415;
+ }
+.tres{
+  background-color:rgb(157, 228, 84);
+  border-color:rgb(22, 99, 17);
+}
+.dos{
+  background-color:rgb(126, 207, 88);
+  border-color:rgb(22, 99, 17);
+}
+h2{
+  color:#462d0d;
+  font-family: Alice;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  text-shadow: 5px 5px 5px rgb(85, 89, 42);
+}
+.cuatro{
+  border-radius: 1em ;
+  background-color: rgb(240, 179, 77);
+}
+.cuatro:hover{
+  background-color: rgb(187, 140, 61);
+}
+h3{
+  color:rgb(12, 26, 8);
+  font-family: "Hammersmith One";
+}
+a:hover{
+  color:rgb(22, 99, 17);
+}
+a{
+  color:rgb(25, 47, 23);
+}
