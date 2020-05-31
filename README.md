@@ -16,13 +16,13 @@
 
 2. Una vez instalado, dirígete a la rama master del repositorio Coyote, en la última versión de esta rama es donde encontraremos todos los archivos necesarios para el funcionamiento de nuestra aplicación, dentro de una carpeta llamada CoyoTé.
 
-3. Primero, tendrás que descargar 3 carpetas que se encuentran en la carpeta CoyoTé, en la carpeta htdocs que se encuentra en la carpeta xampp que se crea cuando instalas XAMPP, (o Mamp), esta carpeta la encuentras en tu directorio raíz. Aquí tendrás que descargar las siguientes carpetas: dynamics, statics y templates. Es importante que se respeten estas carpetas y que se encuentren al mismo nivel. 
+3. Primero, tendrás que descargar 3 carpetas que se encuentran en la carpeta CoyoTé (dynamics, templates y statics), descargarás estas carpetas en la carpeta htdocs que se encuentra en la carpeta xampp que se crea cuando instalas XAMPP, (o Mamp), esta carpeta la encuentras en tu directorio raíz, ahí tendrás que descargar las carpetas mencionadas anteriormente. Es importante que se respeten estas carpetas y que se encuentren al mismo nivel. 
 
-4. Cuando tengas listas tus carpetas dentro de htdocs, tendrás que entrar a la carpeta mysql, que se encuentra en la carpeta xampp, posteriormente entrarás a la carpeta bin y es aquí donde descargarás el respaldo BD_CoyoTe.sql. 
+4. Cuando tengas listas tus carpetas dentro de htdocs, tendrás que entrar a la carpeta docs que también se encuentra en la carpeta CoyoTé, aquí encontrarás el respaldo de la base de datos (DB_CoyoTe.sql). Para utilizarla tendrás que entrar a la carpeta mysql, que se encuentra en la carpeta xampp, posteriormente entrarás a la carpeta bin y es aquí donde descargarás el respaldo DB_CoyoTe.sql. 
 
 5. Una vez que tengas tu respaldo descargado, entrarás a tu terminal. Una vez dentro, entraremos a la carpeta xampp posicionándonos en el directorio raíz, luego entraremos a la carpeta xampp, luego a la carpeta mysql y finalmente a la carpeta bin. Una vez dentro de la carpeta bin, entraremos a nuestro SGBD, para una mejor compatibilidad se utilizará root como contraseña. 
 
-6. Crearemos un base de datos de la siguiente forma: CREATE DATABASE pruebas CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;, entramos a esta base y aquí descargaremos nuestro respaldo. (source BD_CoyoTe.sql) 
+6. Crearemos un base de datos de la siguiente forma: CREATE DATABASE pruebas CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;, entramos a esta base y aquí descargaremos nuestro respaldo. (source DB_CoyoTe.sql) 
 
 7. Ya tenemos nuestra base lista, finalmente para visualizar CoyoTé, accederemos a nuestra aplicación desde el navegador con la siguiente sentencia: localhost/dynamics/coyotein.php. Asegurándonos de tener tanto la opción de Apache como la de MYSQL activadas en Xampp. Con esto entraremos a la página inicial de nuestra aplicación y estamos listos para ordenar. 
 
